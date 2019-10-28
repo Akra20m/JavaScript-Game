@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+#game_container {
+    min-width: 600px ;
+    text-align: center;
+}
+
+#game_title {
+    color: yellow;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+}
+
+canvas {
+    border: 2px dashed white;
+}
