@@ -3,8 +3,11 @@
 }
 
 #game_container {
-    min-width: 600px ;
+    min-width: 604px ;
+    width:604px;
     text-align: center;
+    margin:auto;
+    
 }
 
 #game_title {
@@ -18,8 +21,24 @@ html {
 body {
     background-color: black;
     margin: 0;
+
 }
 
 canvas {
     border: 2px dashed white;
+}
+
+.info {
+    color: white;
+    width: 30%;
+    border: 2px solid orange;
+}
+
+#info-container {
+    display: flex;
+    justify-content: space-between;
+    visibility:hidden;
+    margin: 4px;
+    
+
 }

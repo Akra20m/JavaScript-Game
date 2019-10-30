@@ -12,8 +12,8 @@ export default class Enemy {
         ctx.fillRect(this.positionX,this.positionY,40,40);
         }
     update(ctx,type) {
-        if(type==1) this.drawBasic(ctx);
-        else if(type==2) this.drawBoss(ctx);
+        //if(type==1) this.drawBasic(ctx);
+        //else if(type==2) this.drawBoss(ctx);
         this.positionY += 0.1;
     }
        

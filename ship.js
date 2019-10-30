@@ -9,7 +9,8 @@ export default class Ship {
 
         this.bulletPositionY=[];
         this.bulletPositionX=[];
-        this.isHit=[];
+        this.bulletHit=[];
+        this.hitCount=0;
         this.count=0;
     }
   
@@ -39,16 +40,16 @@ export default class Ship {
         if(this.count==10) this.count=0;
         this.bulletPositionY[this.count] = this.positionY - 6 ;
         this.bulletPositionX[this.count]= this.positionX + 7 ;
-        this.isHit[this.count]=false;
+        this.bulletHit[this.count]=false;
         ctx.fillRect(this.bulletPositionX,this.bulletPositionY,6,6);
         this.count++;
-        console.log(this.count)
+        //console.log(this.count)
 
     }
 
     updateBullet(ctx) {
         for(let i=0; i<10;i++){
-            if(!this.isHit[i]){
+            if(!this.bulletHit[i]){
                 ctx.fillRect(this.bulletPositionX[i],this.bulletPositionY[i],5,5);
                 this.bulletPositionY[i] -= 10;
             }

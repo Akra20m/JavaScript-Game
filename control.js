@@ -3,24 +3,36 @@ export default class Control {
         this.vertical = 0;
         this.horizontal =0;
         this.fired = false;
+        this.start = false;
+        this.pause = false;
         document.addEventListener("keydown", event =>{
             let key = event.code;
 
-           // let vertical,horizontal;
-            //if(key == "ArrowRight") ship.update(vertical=0,horizontal=10); // move right
-            //else if(key == "ArrowLeft") ship.update(vertical=0,horizontal=-10); // move left
-            //else if(key == "ArrowDown") ship.update(vertical=5,horizontal=0); // move down
-            //else if(key == "ArrowUp") ship.update(vertical=-5,horizontal=0); // move up
-            //else if(key == "Space") ship.fire(ctx);
-            if(key == "ArrowRight") this.horizontal = 1; // move right
-            else if(key == "ArrowLeft") this.horizontal = -1; // move left
-            else if(key == "ArrowDown") this.vertical= 1; // move down
-            else if(key == "ArrowUp") this.vertical= -1; // move up
-            else if(key == "Space") {
-                if(this.fired == false){
-                    ship.fire(ctx);
-                    this.fired = true;
+            if(this.start==true && this.pause==false){
+                if(key == "ArrowRight") this.horizontal = 1; // move right
+                else if(key == "ArrowLeft") this.horizontal = -1; // move left
+                else if(key == "ArrowDown") this.vertical= 1; // move down
+                else if(key == "ArrowUp") this.vertical= -1; // move up
+                else if(key == "Space") {
+                    if(this.fired == false){
+                        ship.fire(ctx);
+                        this.fired = true;
+                    }
                 }
+                else if(key == "Enter"){
+                    this.pause = true;
+                    ctx.fillStyle = "rgba(255,255,255,0.3)";
+                    ctx.fillRect(0,0,canvas.width,canvas.height);
+                    ctx.font = "40px Ariel";
+                    ctx.fillStyle = "#FFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText("Enter to continue",300,300);
+                } 
+            }
+            
+            else if(key == "Enter"){
+                if(this.pause==false) this.start = true;
+                else this.pause =false;
             }
 
         });
