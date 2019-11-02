@@ -5,10 +5,19 @@ export default class Control {
         this.fired = false;
         this.start = false;
         this.pause = false;
+        this.retry = false;
+        this.goAgain= false;
         document.addEventListener("keydown", event =>{
             let key = event.code;
+            console.log("start: "+this.start);
+            console.log("pause: "+this.pause);
+            console.log("retry: "+this.retry);
+            console.log("start+pause+retry: "+(this.start==true && this.pause==false && this.retry==false));
 
-            if(this.start==true && this.pause==false){
+            console.log(" --------- ");
+
+
+            if(this.start==true && this.pause==false && this.retry==false){
                 if(key == "ArrowRight") this.horizontal = 1; // move right
                 else if(key == "ArrowLeft") this.horizontal = -1; // move left
                 else if(key == "ArrowDown") this.vertical= 1; // move down
@@ -26,14 +35,23 @@ export default class Control {
                     ctx.font = "40px Ariel";
                     ctx.fillStyle = "#FFF";
                     ctx.textAlign = "center";
-                    ctx.fillText("Enter to continue",300,300);
+                    ctx.fillText("Enter to continue",250,250);
                 } 
             }
             
-            else if(key == "Enter"){
+            else if(key == "Enter" && this.retry ==false){
                 if(this.pause==false) this.start = true;
                 else this.pause =false;
             }
+
+            else if(key== "KeyR" && this.retry==true){
+                this.goAgain = true;
+            }
+            console.log("start: "+this.start);
+            console.log("pause: "+this.pause);
+            console.log("retry: "+this.retry);
+            console.log(" ******************** ");
+
 
         });
 
@@ -50,5 +68,15 @@ export default class Control {
 
         });
 
+    }
+
+    reset() {
+        this.vertical = 0;
+        this.horizontal =0;
+        this.fired = false;
+        this.start = false;
+        this.pause = false;
+        this.retry = false;
+        this.goAgain= false;
     }
 }

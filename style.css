@@ -3,8 +3,8 @@
 }
 
 #game_container {
-    min-width: 604px ;
-    width:604px;
+    min-width: 504px ;
+    width:504px;
     text-align: center;
     margin:auto;
     
@@ -41,4 +41,8 @@ canvas {
     margin: 4px;
     
 
+}
+
+img {
+    display: none;
 }
