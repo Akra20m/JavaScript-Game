@@ -19,6 +19,7 @@ drawFormation(ctx,formation){
       else {
         this.enemy[i].positionX = 500;
         this.enemy[i].positionY = 500;
+        explosion.play();
       }
   }
 }

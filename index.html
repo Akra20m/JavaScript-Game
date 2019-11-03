@@ -12,18 +12,22 @@
 <img src="enemyModel.png" id="enemyModel">
 <img src="enemyModel2.png" id="enemyModel2">
 <audio src="shot.wav" id="shot"></audio>
+<audio src="explosion.aiff" id="explosion"></audio>
+
 
 
     <div id="game_container">
         <h1 id="game_title">SPACE WAR</h1>
-        <div id="info-container">
-            <div class="info">Life <span id="life"></span></div>
-            <div class="info">Level <span id="level"></span></div>
-            <div class="info">Score <span id="score"></span></div>
-            <div class="info">Time <span id="time"></span></div>
+        <div id ="info_canvas">
+            <div id="info-container">
+                <div class="info">Life <span id="life"></span></div>
+                <div class="info">Level <span id="level"></span></div>
+                <div class="info">Score <span id="score"></span></div>
+                <div class="info">Time <span id="time"></span></div>
 
-        </div>
-        <canvas id="canvas" width="500" height="500"></canvas> 
+            </div>
+            <canvas id="canvas" width="500" height="500"></canvas> 
+         </div>
     </div>
     <script type="module" src="game.js"></script>
     <script type="module" src="ship.js"></script>

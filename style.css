@@ -12,7 +12,19 @@
 
 #game_title {
     color: yellow;
+    font-size: 50px;
+    margin-bottom: 10px;
+    border: 4px dotted orange;
+    animation:blinking 0.2s infinite;
 }
+@keyframes blinking{
+    0%{color:#ffffe6;}
+    25%{color:#ffffb3;}
+    50%{color:#ffff80;}
+    75%{color:#ffff66;}
+    100%{color:#ffff1a;}
+}
+
 
 html {
     min-height: 100%;
@@ -24,22 +36,22 @@ body {
 
 }
 
-canvas {
-    border: 2px dashed white;
-}
-
 .info {
     color: white;
     width: 30%;
     border: 2px solid orange;
+    border-radius: 12px;
+    font-size: 1.5em;
 }
 
 #info-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     visibility:hidden;
     margin: 4px;
-    
+}
+#info_canvas {
+    border: 2px dashed white;
 
 }
 

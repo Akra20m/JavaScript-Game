@@ -18,6 +18,7 @@ let shipModel = document.getElementById("shipModel");
 let enemyModel = document.getElementById("enemyModel");
 let enemyModel2 = document.getElementById("enemyModel2");
 let shot = document.getElementById("shot");
+let explosion = document.getElementById("explosion");
 let info_container = document.getElementById("info-container");
 
 let ship = new Ship(canvas.width, canvas.height,shot);
@@ -28,14 +29,20 @@ for(let i=0;i<levelInfo[0].num;i++){
      enemy[i]=new Enemy(levelInfo[0].positionX[i],levelInfo[0].positionY[i]);
 }
 
-let formation = new Formation(enemy,ship);
+let formation = new Formation(enemy,ship,explosion);
 
 ctx.fillStyle = '#000';
 ctx.fillRect(0,0,canvas.width,canvas.height);
 ctx.font = "40px Ariel";
 ctx.fillStyle = "#FFF";
 ctx.textAlign = "center";
-ctx.fillText("Click Enter to start",250,250);
+ctx.fillText("Press Enter to start",250,250);
+ctx.fillStyle = "yellow";
+ctx.fillText("------------------------",250,290);
+ctx.fillText("------------------------",250,210);
+
+
+
 
 let timer =0;
 let totalTime = 15;
@@ -54,7 +61,7 @@ function redefine(k){
          enemy[i]=new Enemy(levelInfo[k].positionX[i],levelInfo[k].positionY[i]);
         }
 
-    formation = new Formation(enemy,ship);
+    formation = new Formation(enemy,ship,explosion);
 }
 
 
