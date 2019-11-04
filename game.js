@@ -17,8 +17,11 @@ let time = document.getElementById("time");
 let shipModel = document.getElementById("shipModel");
 let enemyModel = document.getElementById("enemyModel");
 let enemyModel2 = document.getElementById("enemyModel2");
+let background = document.getElementById("background");
+
 let shot = document.getElementById("shot");
 let explosion = document.getElementById("explosion");
+explosion.volume = 0.2;
 let info_container = document.getElementById("info-container");
 
 let ship = new Ship(canvas.width, canvas.height,shot);
@@ -31,19 +34,6 @@ for(let i=0;i<levelInfo[0].num;i++){
 
 let formation = new Formation(enemy,ship,explosion);
 
-ctx.fillStyle = '#000';
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.font = "40px Ariel";
-ctx.fillStyle = "#FFF";
-ctx.textAlign = "center";
-ctx.fillText("Press Enter to start",250,250);
-ctx.fillStyle = "yellow";
-ctx.fillText("------------------------",250,290);
-ctx.fillText("------------------------",250,210);
-
-
-
-
 let timer =0;
 let totalTime = 15;
 let shipDestroyedCount =0;
@@ -51,6 +41,20 @@ let i =0;
 let tempCount= 0;
 let hitCount = 3;
 time.textContent = totalTime;
+
+function startPage() {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.font = "40px Ariel";
+    ctx.fillStyle = "#FFF";
+    ctx.textAlign = "center";
+    ctx.fillText("Press Enter to start",250,250);
+    ctx.fillStyle = "yellow";
+    ctx.fillText("------------------------",250,290);
+    ctx.fillText("------------------------",250,210);
+}
+
+
 
 function redefine(k){
     ship.reset(canvas.width, canvas.height,shot);
@@ -64,19 +68,21 @@ function redefine(k){
     formation = new Formation(enemy,ship,explosion);
 }
 
+startPage(); 
 
 function mainLoop() {
     
-    if(control.start==true && control.pause==false && hitCount!=0 && i<=(levelInfo.length-1)){
+    if(control.start==true && control.pause==false && hitCount >0 && i<=(levelInfo.length-1)){
 
         ctx.clearRect(0,0,canvas.width, canvas.height);
+        ctx.drawImage(background,0,0);
         info_container.style.visibility = "visible";
         level.textContent = i+1;
         life.textContent = hitCount;
         ship.draw(ctx,shipModel);
         ship.update(control.vertical,control.horizontal);
         formation.drawFormation(ctx,levelInfo[i],enemyModel,enemyModel2);
-        formation.updateFormation(ctx,levelInfo[i]);
+        formation.updateFormation(ctx,levelInfo[i],timer);
     
        // if(ship.count!=0){
             ship.updateBullet(ctx);
@@ -111,11 +117,9 @@ function mainLoop() {
             }
 
         }    
-
  
     }
-
-    else if(hitCount==0 || i==(levelInfo.length)){
+    else if(hitCount<=0 || i==(levelInfo.length)){
         info_container.style.visibility = "hidden";
         ctx.fillStyle = '#000';
         ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -123,21 +127,25 @@ function mainLoop() {
         ctx.fillStyle = "#FFF";
         ctx.textAlign = "center";
         ctx.fillText("Your Score " + tempCount,250,200);
-        ctx.fillText("Space to try again",250,250);
+        ctx.fillStyle = "yellow";
+        if(tempCount <= 3) ctx.fillText("SERIOUSLY",250,250);
+        else if(tempCount < 20) ctx.fillText("NOT BAD",250,250);
+        else if(tempCount < 40) ctx.fillText("YOU COULD DO BETTER",250,250);
+        else ctx.fillText("GREAT JOB",250,250);
+
+        ctx.fillStyle = "#FFF";
+        ctx.fillText("Press R to try again",250,300);
+
         control.retry =true;
         control.start = false;
 
 
     }
 
+
     if(control.goAgain==true) {
         redefine(0);
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.font = "40px Ariel";
-        ctx.fillStyle = "#FFF";
-        ctx.textAlign = "center";
-        ctx.fillText("Click Enter to start",250,250);
+        startPage();
 
         timer =0;
         totalTime = 15;

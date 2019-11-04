@@ -9,12 +9,6 @@ export default class Control {
         this.goAgain= false;
         document.addEventListener("keydown", event =>{
             let key = event.code;
-            console.log("start: "+this.start);
-            console.log("pause: "+this.pause);
-            console.log("retry: "+this.retry);
-            console.log("start+pause+retry: "+(this.start==true && this.pause==false && this.retry==false));
-
-            console.log(" --------- ");
 
 
             if(this.start==true && this.pause==false && this.retry==false){
@@ -47,12 +41,6 @@ export default class Control {
             else if(key== "KeyR" && this.retry==true){
                 this.goAgain = true;
             }
-            console.log("start: "+this.start);
-            console.log("pause: "+this.pause);
-            console.log("retry: "+this.retry);
-            console.log(" ******************** ");
-
-
         });
 
         document.addEventListener("keyup", event =>{
