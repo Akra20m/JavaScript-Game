@@ -4,15 +4,10 @@ export default class Enemy {
         this.positionY = positionY;
     }
     drawBasic(ctx) {
-        //ctx.fillStyle = '#F0F';
-         //ctx.fillRect(this.positionX,this.positionY,20,20);
          ctx.drawImage(enemyModel,this.positionX,this.positionY);
         }
     drawBoss(ctx) {
-        //ctx.fillStyle = '#F00';
-       // ctx.fillRect(this.positionX,this.positionY,40,40);
         ctx.drawImage(enemyModel2,this.positionX,this.positionY);
-
         }
     update(ctx,type,move,timer) {
         if(move==1) {

@@ -48,7 +48,6 @@ checkHit(ship,hitCount){
     this.isHit[j]=true;
     this.explosion.play();
     shipcount++;
-    console.log(hitCount);
     }
     
   }

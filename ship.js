@@ -1,12 +1,13 @@
 export default class Ship {
 
     constructor(canvasWidth,canvasHeight,shot) {
+        //ship width and height
         this.width = 40;
         this.height = 40;
-        
+        //ship initial position
         this.positionX = (canvasWidth - this.width)/2;
         this.positionY = canvasHeight - this.height - 10;
-
+        
         this.bulletPositionY=[];
         this.bulletPositionX=[];
         this.bulletHit=[];
@@ -16,8 +17,6 @@ export default class Ship {
     }
   
     draw(ctx) {
-        //ctx.fillStyle = '#FFF';
-        //ctx.fillRect(this.positionX,this.positionY,this.width,this.height);
         ctx.drawImage(shipModel,this.positionX,this.positionY);
     }
 
@@ -47,8 +46,6 @@ export default class Ship {
         ctx.fillRect(this.bulletPositionX,this.bulletPositionY,6,6);
         this.count++;
         this.shot.play();
-        //console.log(this.count)
-
     }
 
     updateBullet(ctx) {
